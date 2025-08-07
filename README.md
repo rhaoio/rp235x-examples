@@ -2,6 +2,9 @@
 
 Embassy-based examples for Raspberry Pi Pico 2 W with various peripherals. Mostly from Freenove examples/tutorials and adapted to Rust.
 
+Adapted from:
+https://github.com/ImplFerris/pico2-quick
+
 ## Quick Start
 
 After the device is connected/accessible from your environment, just run:
