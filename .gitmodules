@@ -1,0 +1,4 @@
+[submodule "embassy-cyw43-firmware"]
+	path = embassy-cyw43-firmware
+	url = https://github.com/embassy-rs/embassy.git
+	branch = main

@@ -1,24 +1,54 @@
 [package]
-name = "em-blinky"
+name = "rp-pico2-examples"
+path = "src/main.rs"
+test = false
+doctest = false
+bench = false
 version = "0.1.0"
 edition = "2021"
 
+[lints.rust]
+unused = { level = "allow", priority = -1 }
+
+[profile.release]
+lints.rust.unused = "warn"
+
+
 [dependencies]
-embassy-executor = { git = "https://github.com/embassy-rs/embassy", version = "0.6.0", features = [
-  "arch-cortex-m",
-  "executor-thread",
-  "defmt",
-  "integrated-timers",
-] }
-defmt-rtt = "0.4"
-panic-probe = { version = "0.3" }
-embassy-time = { git = "https://github.com/embassy-rs/embassy", version = "0.3.2" }
-embassy-rp = { git = "https://github.com/embassy-rs/embassy", version = "0.2.0", features = [
-  "defmt",
-  "time-driver",
-  "critical-section-impl",
-  "rp235xa",
-  "binary-info",
-] }
+embassy-embedded-hal = { git = "https://github.com/embassy-rs/embassy.git", features = ["defmt"], rev = "5e49985" }
+embassy-sync = { git = "https://github.com/embassy-rs/embassy.git", features = ["defmt"], rev = "5e49985" }
+embassy-executor = { git = "https://github.com/embassy-rs/embassy.git", features = ["arch-cortex-m", "executor-thread", "executor-interrupt", "defmt"], rev = "5e49985" }
+embassy-time = { git = "https://github.com/embassy-rs/embassy.git", features = ["defmt", "defmt-timestamp-uptime"], rev = "5e49985" }
+embassy-rp = { git = "https://github.com/embassy-rs/embassy.git", features = ["defmt", "unstable-pac", "time-driver", "critical-section-impl", "rp235xa", "binary-info"], rev = "5e49985" }
+embassy-usb = { git = "https://github.com/embassy-rs/embassy.git", features = ["defmt"], rev = "5e49985" }
+embassy-net = { git = "https://github.com/embassy-rs/embassy.git", features = ["defmt", "tcp", "udp", "raw", "dhcpv4", "medium-ethernet", "dns"], rev = "5e49985" }
+embassy-net-wiznet = { git = "https://github.com/embassy-rs/embassy.git", features = ["defmt"], rev = "5e49985" }
+embassy-futures = { git = "https://github.com/embassy-rs/embassy.git", rev = "5e49985" }
+embassy-usb-logger = { git = "https://github.com/embassy-rs/embassy.git", rev = "5e49985" }
+cyw43 = { git = "https://github.com/embassy-rs/embassy.git", features = ["defmt", "firmware-logs", "bluetooth"], rev = "5e49985" }
+cyw43-pio = { git = "https://github.com/embassy-rs/embassy.git", features = ["defmt"], rev = "5e49985" }
 cortex-m = { version = "0.7.6" }
 cortex-m-rt = "0.7.0"
+defmt = "0.3"
+defmt-rtt = "0.4"
+embedded-io-async = { version = "0.6.1", features = ["defmt-03"] }
+panic-probe = { version = "0.3", features = ["print-defmt"] }
+static_cell = "2.1"
+rand = { version = "0.9.1", default-features = false, features = ["small_rng"] }
+smart-leds = "0.4.0"
+libm = { version = "0.2.15", default-features = false }
+num-traits = { version = "0.2.19", default-features = false }
+heapless = "0.8"
+rand_core = "0.6.4"
+reqwless = "0.13.0"
+serde = { version = "1.0.203", default-features = false, features = ["derive"] }
+serde-json-core = "0.5.1"
+
+# Bluetooth dependencies
+trouble-host = { git = "https://github.com/embassy-rs/trouble.git", features = ["defmt", "derive", "gatt"] }
+
+[patch.crates-io]
+embassy-time = { git = "https://github.com/embassy-rs/embassy.git", rev = "5e49985" }
+embassy-sync = { git = "https://github.com/embassy-rs/embassy.git", rev = "5e49985" }
+embassy-time-driver = { git = "https://github.com/embassy-rs/embassy.git", rev = "5e49985" }
+# bt-hci = { git = "https://github.com/embassy-rs/bt-hci.git" }
